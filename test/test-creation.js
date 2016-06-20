@@ -13,7 +13,7 @@ describe('feathers-plugin generator', function () {
 
       helpers.run(path.join(__dirname, '../app'))
        .inTmpDir(function (dir) {
-         tmpDir = dir;
+        tmpDir = dir;
        })
        .withOptions({
          skipInstall: false

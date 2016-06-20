@@ -31,8 +31,8 @@ module.exports = generators.Base.extend({
       default: this.props.name
     }, {
       name: 'repository',
-      message: 'The GitHub repository URL (e.g. feathersjs/feathers-myplugin)',
-      default: 'feathersjs/' + this.props.name
+      message: 'The GitHub repository URL (e.g. daffl/myplugin)',
+      default: 'daffl/' + this.props.name
     }, {
       name: 'description',
       message: 'Description',
@@ -60,10 +60,7 @@ module.exports = generators.Base.extend({
       );
     }.bind(this));
 
-    this.npmInstall([
-      'feathers-errors@^2.0.0',
-      'debug@^2.2.0'
-    ], { save: true });
+    this.npmInstall([ 'debug@^2.2.0' ], { save: true });
 
     this.npmInstall([
       'babel-core@^6.0.0',
@@ -73,11 +70,6 @@ module.exports = generators.Base.extend({
       'jshint@^2.0.0',
       'mocha@^2.0.0',
       'chai@^3.5.0',
-      'feathers@^2.0.0',
-      'feathers-hooks@^1.5.0',
-      'feathers-rest@^1.2.2',
-      'body-parser@^1.9.0',
-      'nsp@^2.2.0',
       'rimraf@^2.5.0'
     ], { saveDev: true});
   }
