@@ -1,6 +1,6 @@
 {
   "name": "@daffl/generator-node-module",
-  "version": "0.1.1",
+  "version": "0.7.0",
   "description": "A Yeoman generator for creating a minimalist Node module with Babel transpilation.",
   "keywords": [
     "yeoman-generator"
