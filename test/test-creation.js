@@ -7,8 +7,8 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var helpers = require('yeoman-test');
 
-describe('feathers-plugin generator', function () {
-    it('created a plugin with passing tests', function (done) {
+describe('node module generator', function () {
+    it('created a module with passing tests', function (done) {
       var tmpDir;
 
       helpers.run(path.join(__dirname, '../app'))
@@ -19,8 +19,8 @@ describe('feathers-plugin generator', function () {
          skipInstall: false
        })
        .withPrompts({
-         name: 'feathers-tmp',
-         repository: 'feathersjs/feathers-tmp',
+         name: 'node-tmp',
+         repository: 'daffl/node-tmp',
          description: 'Plugin description here'
        })
        .on('end', function () {

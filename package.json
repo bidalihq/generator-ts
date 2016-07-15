@@ -6,8 +6,8 @@
   "homepage": "https://github.com/daffl/generator-node-module",
   "bugs": "https://github.com/daffl/generator-node-module/issues",
   "author": {
-    "name": "Feathers contributors",
-    "email": "hello@feathersjs.com",
+    "name": "David Luecke",
+    "email": "daff@neyeon.com",
     "url": "https://feathersjs.com"
   },
   "contributors": [],

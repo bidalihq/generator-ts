@@ -4,18 +4,15 @@
   "version": "0.0.0",
   "homepage": "https://github.com/<%= repository %>",
   "main": "lib/",
-  "keywords": [
-    "feathers",
-    "feathers-plugin"
-  ],
+  "keywords": [],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/<%= repository %>.git"
   },
   "author": {
-    "name": "Feathers contributors",
-    "email": "hello@feathersjs.com",
+    "name": "David Luecke",
+    "email": "daff@neyeon.com",
     "url": "https://feathersjs.com"
   },
   "contributors": [],

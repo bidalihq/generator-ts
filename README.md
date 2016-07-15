@@ -1,6 +1,6 @@
 # generator-feathers-plugin [![Build Status](https://travis-ci.org/daffl/generator-node-module.png?branch=master)](https://travis-ci.org/daffl/generator-node-module)
 
-> A [Yeoman](http://yeoman.io) generator for initializing new [Feathersjs](https://github.com/feathersjs) plug-ins.
+> A [Yeoman](http://yeoman.io) generator for initializing a new Node module
 
 ## Getting Started
 
