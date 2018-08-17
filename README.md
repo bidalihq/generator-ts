@@ -1,10 +1,17 @@
-# generator-feathers-plugin [![Build Status](https://travis-ci.org/daffl/generator-node-module.png?branch=master)](https://travis-ci.org/daffl/generator-node-module)
+# @bidalihq/generator-ts
 
-> A [Yeoman](http://yeoman.io) generator for initializing a new Node module
+[![Build Status](https://app.bitrise.io/app/43505925211b585d/status.svg?token=CpQrJfgAPzlpEUJWG-puBQ&branch=master)](https://app.bitrise.io/app/43505925211b585d)
+
+> A [Yeoman](http://yeoman.io) generator for initializing a new Node module using TypeScript and Jest (with code coverage)
 
 ## Getting Started
 
-To install [@daffl/generator-node-module](https://github.com/daffl/generator-node-module) from [npm](https://www.npmjs.org/), run:
+```
+npm i yo @bidalihq/generator-ts -g
+mkdir myproject
+cd myproject
+yo @bidalihq/ts
+```
 
 ## License
 
