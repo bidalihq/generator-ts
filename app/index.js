@@ -1,11 +1,12 @@
 'use strict';
 
-var generators = require('yeoman-generator');
+var Generator = require('yeoman-generator');
 var path = require('path');
-var assign = require('object.assign').getPolyfill();
 
-module.exports = generators.Base.extend({
-  initializing: function () {
+module.exports = class TypeScriptGenerator extends Generator {
+  constructor (args, opts) {
+    super(args, opts);
+
     this.pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
     this.props = {
       name: process.cwd().split(path.sep).pop(),
@@ -13,64 +14,59 @@ module.exports = generators.Base.extend({
     };
     this.fileMap = {
       'package.json': 'package.json',
-      'index.js': 'src/index.js',
-      'index.test.js': 'test/index.test.js',
+      'index.ts': 'src/index.ts',
+      'index.test.ts': 'test/index.test.ts',
       'README.md': 'README.md',
-      'LICENSE': 'LICENSE',
       '__gitignore': '.gitignore',
       '__npmignore': '.npmignore'
     };
-  },
+  }
 
-  prompting: function () {
-    var done = this.async();
-    var prompts = [{
+  prompting () {
+    const prompts = [{
       name: 'name',
       message: 'Project name',
       when: !this.pkg.name,
       default: this.props.name
     }, {
       name: 'repository',
-      message: 'The GitHub repository URL (e.g. daffl/myplugin)',
-      default: 'daffl/' + this.props.name
+      message: 'The GitHub repository URL (e.g. bidalihq/myplugin)',
+      default: 'bidalihq/' + this.props.name
     }, {
       name: 'description',
       message: 'Description',
       when: !this.pkg.description
     }];
 
-    this.prompt(prompts).then(function (props) {
-      this.props = assign(this.props, props);
+    return this.prompt(prompts).then(props => {
+      this.props = Object.assign(this.props, props);
+    });
+  }
 
-      done();
-    }.bind(this));
-  },
-
-  writing: function () {
+  writing () {
     this.fs.copy(this.templatePath('static/.*'), this.destinationPath());
     this.fs.copy(this.templatePath('static/**/*'), this.destinationPath());
 
-    Object.keys(this.fileMap).forEach(function(src) {
-      var target = this.fileMap[src];
+    Object.keys(this.fileMap).forEach(src => {
+      const target = this.fileMap[src];
 
       this.fs.copyTpl(
         this.templatePath(src),
         this.destinationPath(target),
         this.props
       );
-    }.bind(this));
+    });
 
-    this.npmInstall([ 'debug@^2.2.0' ], { save: true });
+    this.npmInstall([ 'debug' ], { save: true });
 
     this.npmInstall([
-      'babel-core@^6.0.0',
-      'babel-cli@^6.0.0',
-      'babel-preset-es2015@^6.0.0',
-      'babel-plugin-add-module-exports',
-      'jshint@^2.0.0',
-      'mocha@^2.0.0',
-      'chai@^3.5.0',
-      'rimraf@^2.5.0'
+      '@types/node',
+      '@types/jest',
+      'jest',
+      'shx',
+      'ts-jest',
+      'tslint',
+      'typescript'
     ], { saveDev: true});
   }
-});
+};

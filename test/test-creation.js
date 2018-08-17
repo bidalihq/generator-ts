@@ -7,9 +7,9 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var helpers = require('yeoman-test');
 
-describe('node module generator', function () {
-    it('created a module with passing tests', function (done) {
-      var tmpDir;
+describe('node module generator', () => {
+    it('created a module with passing tests', done => {
+      let tmpDir;
 
       helpers.run(path.join(__dirname, '../app'))
        .inTmpDir(function (dir) {
@@ -20,21 +20,19 @@ describe('node module generator', function () {
        })
        .withPrompts({
          name: 'node-tmp',
-         repository: 'daffl/node-tmp',
+         repository: 'bidalihq/node-tmp',
          description: 'Plugin description here'
        })
        .on('end', function () {
-         assert.ok(fs.existsSync(path.join(tmpDir, '.jshintrc')));
          assert.ok(fs.existsSync(path.join(tmpDir, '.npmignore')));
-         assert.ok(fs.existsSync(path.join(tmpDir, '.travis.yml')));
          assert.ok(fs.existsSync(path.join(tmpDir, '.editorconfig')));
-         assert.ok(fs.existsSync(path.join(tmpDir, '.babelrc')));
+         assert.ok(fs.existsSync(path.join(tmpDir, '.gitignore')));
 
-         var child = exec('npm test', {
+         const child = exec('npm test', {
            cwd: tmpDir
          });
 
-         child.on('exit', function (status) {
+         child.on('exit', status => {
            assert.equal(status, 0, 'Got correct exist status');
            done();
          });

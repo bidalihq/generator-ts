@@ -1,22 +1,22 @@
 {
-  "name": "@daffl/generator-node-module",
+  "name": "@bidalihq/generator-ts",
   "version": "0.8.0",
-  "description": "A Yeoman generator for creating a minimalist Node module with Babel transpilation.",
+  "description": "A Yeoman generator for creating a minimalist Node module with Typescript and Jest.",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/daffl/generator-node-module",
-  "bugs": "https://github.com/daffl/generator-node-module/issues",
+  "homepage": "https://github.com/bidalihq/generator-ts",
+  "bugs": "https://github.com/bidalihq/generator-ts/issues",
   "author": {
-    "name": "David Luecke",
-    "email": "daff@neyeon.com",
-    "url": "https://feathersjs.com"
+    "name": "Bidali",
+    "email": "info@bidali.com",
+    "url": "https://bidali.com"
   },
   "contributors": [],
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/daffl/generator-node-module.git"
+    "url": "git://github.com/bidalihq/generator-ts.git"
   },
   "scripts": {
     "test": "mocha test/ --timeout 120000",
@@ -26,16 +26,15 @@
     "release:major": "npm version major && npm publish"
   },
   "dependencies": {
-    "object.assign": "^4.0.3",
-    "yeoman-generator": "^0.23.2"
+    "yeoman-generator": "^3.1.1"
   },
   "devDependencies": {
-    "mocha": "~2.5.0",
-    "yeoman-test": "^1.4.0"
+    "mocha": "^5.2.0",
+    "yeoman-test": "^1.9.1"
   },
   "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
+    "node": ">=8.0.0",
+    "npm": ">=6.0.0"
   },
   "license": "MIT"
 }

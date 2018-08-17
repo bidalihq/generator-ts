@@ -1,8 +1,11 @@
 .editorconfig
-.jshintrc
 .travis.yml
-.babelrc
+jest.config.js
+tsconfig.json
+tslint.json
 .idea/
-src/
+.vscode/
+.github/
+coverage/
 test/
-!lib/
+src/
