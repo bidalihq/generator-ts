@@ -1,7 +1,9 @@
 'use strict';
 
-var Generator = require('yeoman-generator');
-var path = require('path');
+const Generator = require('yeoman-generator');
+const path = require('path');
+const readPkgUp = require('read-pkg-up');
+const createPkg = require('./templates/package.json');
 
 module.exports = class TypeScriptGenerator extends Generator {
   constructor (args, opts) {
@@ -12,43 +14,51 @@ module.exports = class TypeScriptGenerator extends Generator {
       name: process.cwd().split(path.sep).pop(),
       description: this.pkg.description
     };
-    this.fileMap = {
-      'package.json': 'package.json',
-      'index.ts': 'src/index.ts',
-      'index.test.ts': 'test/index.test.ts',
-      'README.md': 'README.md',
-      '__gitignore': '.gitignore',
-      '__npmignore': '.npmignore'
-    };
   }
 
-  prompting () {
+  async prompting () {
+    const { pkg: rootPkg = {} } = await readPkgUp();
     const prompts = [{
       name: 'name',
       message: 'Project name',
-      when: !this.pkg.name,
-      default: this.props.name
+      default: `@bidalihq/${this.props.name}`
     }, {
       name: 'repository',
       message: 'The GitHub repository URL (e.g. bidalihq/myplugin)',
-      default: 'bidalihq/' + this.props.name
+      default(prompts) {
+        return `bidalihq/${rootPkg.name || prompts.name}`;
+      }
+    }, {
+      name: 'monorepo',
+      type: 'confirm',
+      message: 'Is this a module in a monorepo (Lerna)?',
+      default: !!rootPkg.name
     }, {
       name: 'description',
       message: 'Description',
       when: !this.pkg.description
     }];
 
-    return this.prompt(prompts).then(props => {
-      this.props = Object.assign(this.props, props);
-    });
+    this.props = Object.assign(this.props, await this.prompt(prompts));
   }
 
   writing () {
-    this.fs.copy(this.templatePath('static/.*'), this.destinationPath());
-    this.fs.copy(this.templatePath('static/**/*'), this.destinationPath());
+    const { props } = this;
+    const fileMap = {
+      'index.ts': 'src/index.ts',
+      'index.test.ts': 'test/index.test.ts',
+      'README.md': 'README.md',
+      '__npmignore': '.npmignore'
+    };
 
-    Object.keys(this.fileMap).forEach(src => {
-      const target = this.fileMap[src];
+    if(!props.monorepo) {
+      fileMap.__gitignore = '.gitignore';
+      this.fs.copy(this.templatePath('static/.*'), this.destinationPath());
+      this.fs.copy(this.templatePath('static/**/*'), this.destinationPath());
+    }
+
+    Object.keys(fileMap).forEach(src => {
+      const target = fileMap[src];
 
       this.fs.copyTpl(
         this.templatePath(src),
@@ -57,6 +67,7 @@ module.exports = class TypeScriptGenerator extends Generator {
       );
     });
 
+    this.fs.writeJSON(this.destinationPath('package.json'), createPkg(props));
     this.npmInstall([ 'debug' ], { save: true });
 
     this.npmInstall([
