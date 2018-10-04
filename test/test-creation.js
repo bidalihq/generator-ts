@@ -14,6 +14,7 @@ describe('node module generator', () => {
       helpers.run(path.join(__dirname, '../app'))
        .inTmpDir(function (dir) {
         tmpDir = dir;
+        console.log(dir);
        })
        .withOptions({
          skipInstall: false

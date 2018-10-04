@@ -31,7 +31,8 @@
     "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
     "lint": "tslint --fix src/**/* test/**/*",
     "compile": "shx rm -rf lib/ && tsc",
-    "test": "jest --detectOpenHandles --forceExit",
+    "jest": "jest --detectOpenHandles --forceExit",
+    "test": "npm run lint && npm run jest",
     "test:watch": "jest --watch --collectCoverage=false"
   },
   "directories": {
