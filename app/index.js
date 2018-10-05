@@ -50,12 +50,14 @@ module.exports = class TypeScriptGenerator extends Generator {
       'README.md': 'README.md',
       '__npmignore': '.npmignore'
     };
+    const staticFolder = props.monorepo ? 'static/monorepo' : 'static/standalone';
 
     if(!props.monorepo) {
       fileMap.__gitignore = '.gitignore';
-      this.fs.copy(this.templatePath('static/.*'), this.destinationPath());
-      this.fs.copy(this.templatePath('static/**/*'), this.destinationPath());
     }
+
+    this.fs.copy(this.templatePath(`${staticFolder}/.*`), this.destinationPath());
+    this.fs.copy(this.templatePath(`${staticFolder}/**/*`), this.destinationPath());
 
     Object.keys(fileMap).forEach(src => {
       const target = fileMap[src];
@@ -68,7 +70,6 @@ module.exports = class TypeScriptGenerator extends Generator {
     });
 
     this.fs.writeJSON(this.destinationPath('package.json'), createPkg(props));
-    this.npmInstall([ 'debug' ], { save: true });
 
     this.npmInstall([
       '@types/node',
