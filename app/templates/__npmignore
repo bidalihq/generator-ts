@@ -1,5 +1,4 @@
-<% if(!monorepo) { %>
-.editorconfig
+<% if(!monorepo) { %>.editorconfig
 .travis.yml
 jest.config.js
 tsconfig.json
@@ -7,7 +6,6 @@ tslint.json
 .idea/
 .vscode/
 .github/
-coverage/
-<% } %>
+coverage/<% } %>
 test/
 src/
