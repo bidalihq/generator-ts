@@ -54,9 +54,9 @@ module.exports = class TypeScriptGenerator extends Generator {
 
     if(!props.monorepo) {
       fileMap.__gitignore = '.gitignore';
+      this.fs.copy(this.templatePath(`${staticFolder}/.*`), this.destinationPath());
     }
 
-    this.fs.copy(this.templatePath(`${staticFolder}/.*`), this.destinationPath());
     this.fs.copy(this.templatePath(`${staticFolder}/**/*`), this.destinationPath());
 
     Object.keys(fileMap).forEach(src => {
