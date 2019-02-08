@@ -73,11 +73,12 @@ module.exports = class TypeScriptGenerator extends Generator {
 
     this.npmInstall([
       '@types/node',
-      '@types/jest',
+      '@types/mocha',
       '@types/debug',
-      'jest',
+      'mocha',
+      'nyc',
+      'ts-node',
       'shx',
-      'ts-jest',
       'tslint',
       'typescript'
     ], { saveDev: true});

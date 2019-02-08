@@ -2,7 +2,7 @@
 
 [![Build Status](https://app.bitrise.io/app/43505925211b585d/status.svg?token=CpQrJfgAPzlpEUJWG-puBQ&branch=master)](https://app.bitrise.io/app/43505925211b585d)
 
-> A [Yeoman](http://yeoman.io) generator for initializing a new Node module using TypeScript and Jest (with code coverage)
+> A [Yeoman](http://yeoman.io) generator for initializing a new Node module using TypeScript and Mocha (with code coverage)
 
 ## Getting Started
 

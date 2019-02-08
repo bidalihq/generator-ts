@@ -1,7 +1,7 @@
 {
   "name": "@bidalihq/generator-ts",
   "version": "0.2.2",
-  "description": "A Yeoman generator for creating a minimalist Node module with Typescript and Jest.",
+  "description": "A Yeoman generator for creating a minimalist Node module with Typescript and Mocha with code coverage.",
   "keywords": [
     "yeoman-generator"
   ],
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "read-pkg-up": "^4.0.0",
-    "yeoman-generator": "^3.1.1"
+    "yeoman-generator": "^3.2.0"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
