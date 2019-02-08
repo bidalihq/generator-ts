@@ -1,6 +1,6 @@
 {
   "name": "@bidalihq/generator-ts",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A Yeoman generator for creating a minimalist Node module with Typescript and Mocha with code coverage.",
   "keywords": [
     "yeoman-generator"
