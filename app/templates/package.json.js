@@ -26,9 +26,10 @@ module.exports = props => {
       prepublish: 'npm run compile',
       lint: 'tslint --fix src/**/* test/**/*',
       compile: 'shx rm -rf lib/ && tsc',
-      test: 'npm run lint && npm run jest',
-      jest: 'jest --detectOpenHandles --forceExit',
-      'test:watch': 'jest --watch --collectCoverage=false'
+      test: 'npm run lint && npm run mocha',
+      mocha: props.monorepo
+        ? `mocha --opts ../../mocha.opts --recursive test/**/*.test.ts`
+        : `nyc mocha --opts mocha.opts --recursive test/**/*.test.ts`
     },
     directories: {
       lib: 'lib'

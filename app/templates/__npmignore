@@ -1,6 +1,5 @@
 <% if(!monorepo) { %>.editorconfig
 .travis.yml
-jest.config.js
 tsconfig.json
 tslint.json
 .idea/
